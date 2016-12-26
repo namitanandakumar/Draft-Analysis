@@ -30,27 +30,27 @@ for i in range(len(picks.columns)):
     result = result.drop('index', 1)
     result.columns.values[3] = 'Overall'
     result['Pick'] = h
-    result['PCarAV'] = result['CarAV'].sum()
+    result['PossibleCarAV'] = result['CarAV'].sum()
     result['Team'] = team
     results.append(result)
 results = pd.concat(results, axis=0)
 
 test2 = test[['Overall','Player','CarAV']]
-test2.columns = ['Pick', 'Actual','ACarAV']
+test2.columns = ['Pick', 'ActualPlayer','ActualCarAV']
 test3 = test[['Team','CarAV']]
-test3.columns.values[1] = 'TCarAV'
+test3.columns.values[1] = 'TotalCarAV'
 test3 = test3.groupby(['Team']).sum()
 test3['Team'] = test3.index
 
 results = results.merge(test2, on='Pick', how='left')
 results = results.merge(test3, on='Team', how='left')
-results['PCT'] = (results['TCarAV']/results['PCarAV'])*100
+results['PCT'] = (results['TotalCarAV']/results['PossibleCarAV'])*100
 counts = results.groupby(['Team']).count()
 counts = counts['Player']
 print results.head(n=100)
 
 results2 = results.groupby(['Team']).mean()
-results2 = results2[['Pick','TCarAV','PCarAV','PCT']]
+results2 = results2[['Pick','TotalCarAV','PossibleCarAV','PCT']]
 results2 = pd.concat([counts,results2],axis=1,join_axes=[results2.index])
 results2.columns = ['# of Picks','Average Pick', 'Total Value Drafted','Total Value Possible','% Value Extracted']
 results2 = results2.round(2)
