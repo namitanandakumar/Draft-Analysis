@@ -5,7 +5,9 @@ pd.set_option('display.width', desired_width)
 
 picks = pd.read_csv('~/Downloads/98picks.csv')
 picks = picks.sort_values(by='ARI', ascending=False)
-###242-250 are used as NAs if team has fewer than 12 picks.
+# Each team is given the same amount of picks so that the loop runs correctly.
+# Extra picks with NA values were added for teams that have fewer than the maximum number of picks.
+# These are dropped in the results.
 test = pd.read_csv('~/Downloads/98draft.csv')
 test = test.sort_values(by='CarAV', ascending=False)
 
