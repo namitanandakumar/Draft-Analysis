@@ -49,6 +49,18 @@ counts = results.groupby(['Team']).count()
 counts = counts['Player']
 print results.head(n=100)
 
+# Variables
+# Team = team we're evaluating
+# Player = player they should have drafted
+# CarAV = that player's career value
+# Overall = where that player was actually drafted
+# Pick = which pick the team would use on them
+# PossibleCarAV = perfect draft value
+# ActualPlayer = player they actually drafted
+# ActualCarAV = that player's career value
+# TotalCarAV = total value they actually drafed
+# PCT = TotalCarAV/PossibleCarAV
+
 results2 = results.groupby(['Team']).mean()
 results2 = results2[['Pick','TotalCarAV','PossibleCarAV','PCT']]
 results2 = pd.concat([counts,results2],axis=1,join_axes=[results2.index])
