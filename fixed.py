@@ -4,6 +4,7 @@ desired_width = 200
 pd.set_option('display.width', desired_width)
 
 stats = pd.read_csv('~/Downloads/00stats.csv')
+# Read in a file with the player name, their draft position, the team who drafted them, and their career value.
 stats = stats.sort_values(by='PS', ascending=False)
 stats1 = stats[['Overall','Team']]
 stats1 = stats1.sort_values(by='Team', ascending=True)
@@ -11,6 +12,7 @@ stats1 = stats1.sort_values(by='Team', ascending=True)
 stats1.sort_values(by='Team', inplace=True)
 stats1.set_index(keys=['Team'], drop=False, inplace=True)
 names = stats1['Team'].unique().tolist()
+# Getting a list of teams for which to run the algorithm.
 
 results = []
 
@@ -20,6 +22,7 @@ for i in names:
     df = df.sort_values(by='Overall', ascending=False)
     df1 = df['Overall']
     df1 = list(df1)
+    # List of the team's draft picks.
     stats2 = stats
     for i in df1:
         stats2 = stats2[['Overall', 'Team', 'Player', 'PS']]
@@ -27,7 +30,10 @@ for i in names:
         stats2['Rank'] = stats2['Rank'] + 1
         stats2.Rank = stats2.Rank.fillna(value=0)
         stats2 = stats2[stats2.Rank != 1]
+        # Find the most valuable player left on the draft board for your latest pick, delete him from the data set.
+        # Redo until all the picks are accounted for.
     result = stats[~stats.isin(stats2)].dropna()
+    # Difference the data sets to see who we've picked.
     result = result[['Team', 'Player', 'PS', 'Overall']]
     result = result.sort_values(by='Overall', ascending=True)
     result = result.reset_index()
@@ -39,6 +45,15 @@ for i in names:
     result['PPS'] = result['PS'].sum()
     results.append(result)
 results = pd.concat(results, axis=0)
+
+# Variables defined below include:
+# Optimal: Who the best player to take at a specific pick was. OPS is their career value.
+# Overall: Actual draft position.
+# Pick: The pick you use for that player (always comes before their actual draft position).
+# Actual: The actual player selected. APS is their career value.
+# PPS: The value of the perfect draft for a specific team.
+# TPS: The value of the actual draft selections for a specific team.
+# PCT: The amount of perfect draft value that teams end up extracting.
 
 actual = stats[['Overall','Player','PS']]
 actual.columns = ['Pick', 'Actual','APS']
