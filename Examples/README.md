@@ -1,0 +1,10 @@
+<p>First of all, download nhlplayers.csv, and if you're using any of my code, make sure that the file path in the first line is correct. gini.py has Python code and lorenz.R has R code to calculate Gini coefficients for each team. The R code is structured in a way that makes it more conducive to graphing individual Lorenz curves, and that's mostly because I think graphs are prettier in R.<p>
+<p>Let me try to anticipate some questions/concerns:<p>
+<p><i>Your code has a mistake in it!</i><br>
+Absolutely not, it's been cross-referenced with multiple Gini coefficient calculators.</p>
+<p><i>Your code is inefficient!</i><br>
+This is probably true, I am certainly not a master of coding. If you find a much simpler way of expressing something, feel free to let me know.</p>
+<p><i>Your code isn't working for me!</i><br>
+Check to see if the file path in the first line is correct, you'll want to read in the data from the right place in your computer. You may also have trouble if you're running an older version of Python.</p>
+<p><i>You should exclude defensemen/include more than 21 skaters/etc.!</i><br>
+Yes, you're right! Please modify my code to analyze anything in any way that you want, that's the whole point.</p>
