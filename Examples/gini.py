@@ -35,7 +35,9 @@ for i in names:
 ### Create a dataframe with team names and corresponding coefficients.
 results = pd.concat(results, axis=0).reset_index(drop=True)
 results = pd.concat([pd.Series(names),results],axis=1,join_axes=[results.index])
-### Make sure your columns are named and everything is clear!
+### Make sure your columns are named and everything is clear.
 d2 = pd.DataFrame({'Team': results[0], 'Gini': results[1]})
+### Order from highest to lowest coefficient.
+d2 = d2.sort_values(by='Gini', ascending=False).reset_index(drop=True)
 print(d2)
 ### Check your results and see if they match across all programs.
