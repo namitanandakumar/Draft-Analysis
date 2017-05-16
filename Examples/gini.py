@@ -1,4 +1,3 @@
-from __future__ import division
 import pandas as pd
 
 ### Download the data.
@@ -38,5 +37,5 @@ results = pd.concat(results, axis=0).reset_index(drop=True)
 results = pd.concat([pd.Series(names),results],axis=1,join_axes=[results.index])
 ### Make sure your columns are named and everything is clear!
 d2 = pd.DataFrame({'Team': results[0], 'Gini': results[1]})
-### Note that if you're using a newer version of Python, you'll have to type "print(d2)".
-print d2
+print(d2)
+### Check your results and see if they match across all programs.
