@@ -43,11 +43,8 @@ gini <- function(team) {
 
 ### Create a dataframe with team names.
 df <- data.frame(Team = levels(dat$Team))
-
 ### Create a column in the dataframe with the corresponding Gini coefficients.
-for (i in 1:nrow(df)) {
-  df$Gini[i] <- gini(df[,1][i])
-}
+df$Gini <- as.numeric(lapply(df$Team,gini))
 
 ### Order from highest to lowest coefficient.
 df <- df[order(-df$Gini),]
