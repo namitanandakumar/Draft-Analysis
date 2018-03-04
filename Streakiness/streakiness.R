@@ -129,9 +129,9 @@ games$team <- as.factor(games$team)
 # Deal with duplicate player names as you see fit.
 gamelogs$player <- as.character(gamelogs$player)
 gamelogs$player[gamelogs$player == 'Sebastian Aho' &
-                  gamelogs$tm == 'NYI'] <- 'Lil Sebastian'
+                  gamelogs$team == 'NYI'] <- 'Lil Sebastian'
 gamelogs$player[gamelogs$player == 'Erik Gustafsson' &
-                  gamelogs$tm == 'PHI'] <- 'Flyers Erik'
+                  gamelogs$team == 'PHI'] <- 'Flyers Erik'
 gamelogs$player <- as.factor(gamelogs$player)
 
 # Test with the 2017-18 Flyers.
