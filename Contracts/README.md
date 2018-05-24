@@ -1,0 +1,1 @@
+Fun with contracts.
