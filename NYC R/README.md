@@ -1,0 +1,1 @@
+We got some slides, win_probability.R has NHL play-by-play data wrangling and simple win probability calculations, and overager_analysis.R has NHL draft data scraping and team draft tendency stuff. I barely know how to use GitHub, @ me on twitter with questions.
